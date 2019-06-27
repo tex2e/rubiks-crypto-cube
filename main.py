@@ -82,6 +82,15 @@ class RubikCube:
                     face[y][x] = i
                     i += 1
 
+    def encrypt(self, key):
+        for move in key.split('-'):
+            if move[0] == 'R':
+                self.rotate_row(int(move[1]))
+            if move[0] == 'C':
+                self.rotate_column(int(move[1]))
+            if move[0] == 'L':
+                self.rotate_level(int(move[1]))
+
     # ex) R1
     #          *  *  *                                 *  *  *
     #          *  *  *                                 *  *  *
@@ -184,5 +193,10 @@ if __name__ == '__main__':
     rubikcube = RubikCube(size=3)
     rubikcube.init_arange()
     print(rubikcube)
-    rubikcube.rotate_level(2)
+    # rubikcube.rotate_level(2)
+    # print(rubikcube)
+
+    # Example)
+    key = 'R3-L2-C4-L6-R5-C1-R3-L4-R1'
+    rubikcube.encrypt(key)
     print(rubikcube)
